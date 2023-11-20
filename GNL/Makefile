@@ -10,9 +10,11 @@ WHITE = \033[37m
 FCOLOR = \033[0m
 
 # Variables
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 
 NAME = tester_gnl
+
+BUFFER_SIZE = BUFFER_SIZE=42
 
 GNL_DIR = ./includes/
 
@@ -43,7 +45,7 @@ TESTER_BONUS = $(SRC_DIR)tester_gnl_bonus.c
 $(NAME):
 	@echo "$(YELLOW)Compiling $(PURPLE)$(NAME)$(YELLOW)...$(FCOLOR)"
 	@sleep 0.2
-	@$(CC) $(FLAGS) -I$(GNL_DIR) -I$(SRC_DIR) $(GNL_FILES) $(TESTER) -o $(BIN_DIR)$(NAME) -g3
+	@$(CC) $(FLAGS) -I$(GNL_DIR) -I$(SRC_DIR) $(GNL_FILES) $(TESTER) -D $(BUFFER_SIZE) -o $(BIN_DIR)$(NAME)
 	@echo "$(GREEN)"Compiled [OK] "$(FCOLOR)"
 
 # Compiler
@@ -55,7 +57,9 @@ re: clean all
 # compile bonus part
 bonus:
 	@echo "Compiling Bonus$(NAME)..."
+	@sleep 0.2
 	@$(CC) $(FLAGS) -I$(GNL_DIR_BONUS) -I$(SRC_DIR) $(GNL_FILES_BONUS) $(TESTER_BONUS) -o $(BIN_DIR)$(NAME)
+	@echo "$(GREEN)"Compiled with bonus [OK] "$(FCOLOR)"
 
 # clean all
 clean:
